@@ -13,6 +13,6 @@ internal class ConcurrencySettings()
     /// The total number of concurrent jobs that can be executed
     /// by the scheduler at any one time, irrespective of the job type.
     /// </summary>
-    public int MaxDegreeOfParallelism { get; set; }
+    public int MaxDegreeOfParallelism { get; set; } = Environment.ProcessorCount * 4; // 4 is just an arbitrary multiplier based on system observed I/O, this could come from Configuration
 }
 

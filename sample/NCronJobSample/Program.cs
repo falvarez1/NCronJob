@@ -10,7 +10,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
 
 // Add NCronJob to the container.
-builder.Services.AddNCronJob(n => n
+builder.AddNCronJob(n => n
 
     // Execute the job every 2 minutes
     .AddJob<PrintHelloWorldJob>(p =>
