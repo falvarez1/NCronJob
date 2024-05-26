@@ -6,69 +6,17 @@ All notable changes to **NCronJob** will be documented in this file. The project
 
 ## [Unreleased]
 
-## [2.6.1] - 2024-05-25
-
-This release has the same changes as `2.6.0` but fixes an issue in the release pipeline.
-
-### Changed
-
-- The NuGet.org "Release Notes" section will from now on be empty. It will contain a link to the releases.
-
-## [2.6.0] - 2024-05-25
-
-### Changed
-
-- API signature improvements - Enhanced the job scheduling framework with new classes and interfaces to better support job lifecycle management, including startup configuration and notification handling. This includes the introduction of `StartupStage<TJob>`, `NotificationStage<TJob>`, `IJobStage`, `IStartupStage<TJob>`, and `INotificationStage<TJob>`.
-  (#70) By [@falvarez1](https://github.com/falvarez1)
-
 ### Added
-
-- Startup jobs - Run a job when the application starts. (#70) By [@falvarez1](https://github.com/falvarez1)
-- Sample project - Added a sample project to demonstrate Startup Jobs. (#70) By [@falvarez1](https://github.com/falvarez1)
-
-## [2.5.0] - 2024-05-21
-
-### Changed
-
-- Instant jobs are executed with the highest priority.
-
-### Fixed
-
-- If an instant job is executed that is not registered, it will throw an exception instead of silently ignoring it.
-
-## [2.4.6] - 2024-05-21
-
-### Fixed
-
-- Retry/Concurrency Attributes where ignored
-
-## [2.4.5] - 2024-05-20
-
-### Fixed
-
-- Readded public constructor for `JobExeuctionContext` to make it unit testable
-
-### Added
-
-- Regex Indicator for cron expressions (IDE support)
-
-## [2.4.4] - 2024-05-20
-
-### Added
-
 - New minimal API to register jobs. By [@falvarez1](https://github.com/falvarez1)
-  Jobs can be defined via a simple lambda:
-
+Jobs can be defined via a simple lambda:
 ```csharp
-builder.Services.AddNCronJob((ILoggerFactory factory, TimeProvider timeProvider) =>
+builder.Services.AddNCronJob((ILogger<Program> logger, TimeProvider timeProvider) =>
 {
-    var logger = factory.CreateLogger("My Job");
     logger.LogInformation("Hello World - The current date and time is {Time}", timeProvider.GetLocalNow());
 }, "*/5 * * * * *");
 ```
 
 ### Fixed
-
 - Instant jobs did ignore the concurrency attribute and global concurrency settings.
   Fixed by [@linkdotnet](https://github.com/linkdotet). Reported by [@KorsG](https://github.com/KorsG) in [#52](https://github.com/linkdotnet/NCronJob/issues/52)
 
@@ -261,13 +209,7 @@ services.AddNCronJob(options =>
 - Parameterized jobs - instant as well as cron jobs!
 - Integrated in ASP.NET - Access your DI container like you would in any other service
 
-[unreleased]: https://github.com/NCronJob-Dev/NCronJob/compare/2.6.1...HEAD
-[2.6.1]: https://github.com/NCronJob-Dev/NCronJob/compare/2.6.0...2.6.1
-[2.6.0]: https://github.com/NCronJob-Dev/NCronJob/compare/2.5.0...2.6.0
-[2.5.0]: https://github.com/NCronJob-Dev/NCronJob/compare/2.4.6...2.5.0
-[2.4.6]: https://github.com/linkdotnet/NCronJob/compare/2.4.5...2.4.6
-[2.4.5]: https://github.com/linkdotnet/NCronJob/compare/2.4.4...2.4.5
-[2.4.4]: https://github.com/linkdotnet/NCronJob/compare/2.3.2...2.4.4
+[unreleased]: https://github.com/linkdotnet/NCronJob/compare/2.3.2...HEAD
 [2.3.2]: https://github.com/linkdotnet/NCronJob/compare/2.3.1...2.3.2
 [2.3.1]: https://github.com/linkdotnet/NCronJob/compare/2.2.1...2.3.1
 [2.2.1]: https://github.com/linkdotnet/NCronJob/compare/2.1.4...2.2.1

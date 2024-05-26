@@ -1,4 +1,4 @@
-using NCronJob;
+using LinkDotNet.NCronJob;
 using NCronJobSample;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
+
+builder.Services.AddSingleton<StateChangeObserver>();
+builder.Services.AddSingleton<StateChangeObserver2>();
 
 // Add NCronJob to the container.
 builder.Services.AddNCronJob(n => n
@@ -32,6 +35,9 @@ builder.Services.AddNCronJob(n => n
 );
 
 var app = builder.Build();
+
+var stateChangeObserver = app.Services.GetRequiredService<StateChangeObserver>();
+var stateChangeObserver2 = app.Services.GetRequiredService<StateChangeObserver2>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

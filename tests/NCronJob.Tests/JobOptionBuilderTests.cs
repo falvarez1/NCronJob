@@ -1,5 +1,4 @@
-using Microsoft.Extensions.Time.Testing;
-using NCronJob;
+using LinkDotNet.NCronJob;
 using Shouldly;
 
 namespace NCronJob.Tests;

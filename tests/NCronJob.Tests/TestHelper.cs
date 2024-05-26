@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 using System.Threading.Channels;
-using NCronJob;
+using LinkDotNet.NCronJob;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Shouldly;
@@ -50,9 +50,9 @@ public abstract class JobIntegrationBase : IDisposable
 
     protected ServiceProvider CreateServiceProvider() => serviceProvider ??= ServiceCollection.BuildServiceProvider();
 
-    protected async Task<bool> WaitForJobsOrTimeout(int jobRuns, TimeSpan? timeOut = null)
+    protected async Task<bool> WaitForJobsOrTimeout(int jobRuns, int timeOut = 200000)
     {
-        using var timeoutTcs = new CancellationTokenSource(timeOut ?? TimeSpan.FromSeconds(5));
+        using var timeoutTcs = new CancellationTokenSource(TimeSpan.FromSeconds(timeOut));
         try
         {
             await Task.WhenAll(GetCompletionJobs(jobRuns, timeoutTcs.Token));

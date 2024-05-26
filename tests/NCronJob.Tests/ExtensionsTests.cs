@@ -1,3 +1,4 @@
+using LinkDotNet.NCronJob;
 using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
 

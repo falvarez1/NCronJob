@@ -1,4 +1,4 @@
-using NCronJob;
+using LinkDotNet.NCronJob;
 using System.Security.Cryptography;
 
 namespace NCronJobSample;

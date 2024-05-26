@@ -3,18 +3,18 @@
 Using **NCronJob** is simple and easy. Just follow the steps below to get started.
 
 ## 1. Install the package
-[![NuGet](https://img.shields.io/nuget/vpre/NCronJob.svg)](https://www.nuget.org/packages/NCronJob)
+[![NuGet](https://img.shields.io/nuget/vpre/LinkDotNet.NCronJob.svg)](https://www.nuget.org/packages/LinkDotNet.NCronJob)
 
 Install the latest stable version of the package via NuGet:
 
 ```bash
-dotnet add package NCronJob
+dotnet add package LinkDotNet.NCronJob
 ```
 
 Alternatively add the package reference to your `.csproj` file:
 
 ```xml
-<PackageReference Include="NCronJob" Version="#{version}#" />
+<PackageReference Include="LinkDotNet.NCronJob" Version="#{version}#" />
 ```
 
 ## 2. Create a job
@@ -56,17 +56,3 @@ Services.AddNCronJob(options =>
 ```
 
 Now your `PrintHelloWorld` job will run every minute and log "Hello World" to the console. And that is all!
-
-## Too complicated?
-We also over a "Minimal API" that allows you to define jobs similiar to the Minimal API for Controllers.
-
-```csharp
-builder.Services.AddNCronJob((ILogger<Program> logger, TimeProvider timeProvider) =>
-{
-    logger.LogInformation("Hello World - The current date and time is {Time}", timeProvider.GetLocalNow());
-}, "*/5 * * * * *");
-```
-
-The job will be defined "inline" and is capable of resolving services from the DI container.
-
-You can read more about this in the section [Minimal API](features/minimal-api.md).

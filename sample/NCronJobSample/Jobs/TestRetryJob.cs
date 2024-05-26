@@ -1,4 +1,4 @@
-using NCronJob;
+using LinkDotNet.NCronJob;
 
 namespace NCronJobSample;
 
