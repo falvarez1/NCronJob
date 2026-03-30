@@ -6,6 +6,8 @@ All notable changes to **NCronJob** will be documented in this file. The project
 
 ## [Unreleased]
 
+## [v4.10.0] - 2026-03-30
+
 ### Added
 
 - `OnlyIf` on top-level job configuration.
@@ -575,7 +577,8 @@ services.AddNCronJob(options =>
 - Parameterized jobs - instant as well as cron jobs!
 - Integrated in ASP.NET - Access your DI container like you would in any other service
 
-[unreleased]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.9.0...HEAD
+[unreleased]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.10.0...HEAD
+[v4.10.0]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.9.0...v4.10.0
 [v4.9.0]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.8.1...v4.9.0
 [v4.8.1]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.7.0...v4.8.1
 [v4.7.0]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.6.0...v4.7.0
