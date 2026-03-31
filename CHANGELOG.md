@@ -6,6 +6,8 @@ All notable changes to **NCronJob** will be documented in this file. The project
 
 ## [Unreleased]
 
+## [v4.10.1] - 2026-03-31
+
 ### Fixed
 
 - Fixed duplicate job execution caused by system timers firing slightly before the scheduled cron time, resulting in the same cron slot being scheduled again. Reported by [@RShergold](https://github.com/RShergold) in [#327](https://github.com/NCronJob-Dev/NCronJob/issues/327). Fixed by [@linkdotnet](https://github.com/linkdotnet).
@@ -581,7 +583,8 @@ services.AddNCronJob(options =>
 - Parameterized jobs - instant as well as cron jobs!
 - Integrated in ASP.NET - Access your DI container like you would in any other service
 
-[unreleased]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.10.0...HEAD
+[unreleased]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.10.1...HEAD
+[v4.10.1]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.10.0...v4.10.1
 [v4.10.0]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.9.0...v4.10.0
 [v4.9.0]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.8.1...v4.9.0
 [v4.8.1]: https://github.com/NCronJob-Dev/NCronJob/compare/v4.7.0...v4.8.1
