@@ -110,7 +110,7 @@ internal sealed partial class JobWorker
 
             if (!nextJob.IsOneTimeJob)
             {
-                ScheduleJob(nextJob.JobDefinition);
+                ScheduleJob(nextJob.JobDefinition, nextRunTime);
             }
 
             shouldReleaseSemaphore = false;
@@ -189,7 +189,7 @@ internal sealed partial class JobWorker
     private void UpdateRunningJobCount(string jobFullName, int change) =>
         runningJobCounts.AddOrUpdate(jobFullName, change, (_, existingVal) => Math.Max(0, existingVal + change));
 
-    public void ScheduleJob(JobDefinition job)
+    public void ScheduleJob(JobDefinition job, DateTimeOffset? lastScheduledRunTime = null)
     {
         if (!job.IsEnabled)
         {
@@ -197,7 +197,15 @@ internal sealed partial class JobWorker
         }
 
         var utcNow = timeProvider.GetUtcNow();
-        var nextRunTime = job.GetNextCronOccurrence(utcNow);
+
+        // When rescheduling after a job fires, the timer may have triggered slightly
+        // before the scheduled time. Using utcNow directly could return the same cron
+        // slot again, causing duplicate execution. Using the later of utcNow and the
+        // last scheduled run time guarantees we always advance past the fired slot.
+        var baseTime = lastScheduledRunTime.HasValue && lastScheduledRunTime.Value > utcNow
+            ? lastScheduledRunTime.Value
+            : utcNow;
+        var nextRunTime = job.GetNextCronOccurrence(baseTime);
 
         if (!nextRunTime.HasValue)
         {

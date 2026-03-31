@@ -6,6 +6,10 @@ All notable changes to **NCronJob** will be documented in this file. The project
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed duplicate job execution caused by system timers firing slightly before the scheduled cron time, resulting in the same cron slot being scheduled again. Reported by [@RShergold](https://github.com/RShergold) in [#327](https://github.com/NCronJob-Dev/NCronJob/issues/327). Fixed by [@linkdotnet](https://github.com/linkdotnet).
+
 ## [v4.10.0] - 2026-03-30
 
 ### Added
